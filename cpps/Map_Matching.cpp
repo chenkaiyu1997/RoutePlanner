@@ -98,7 +98,7 @@ void HMM::viterbi(int n) {
 	for(int i = 2; i <= n ; i++) {
 		int len1 = z[i].size(), len2 = z[i - 1].size();
 		for(int j = 0; j < len1; j++){
-			double maxvalue = -inf;
+			double maxvalue = 1e-200;
 			for(int k = 0; k < len2; k ++) {
 				double tmp = f[i-1][k] + rectA[i][j][k] + rectB[i][j];
 				if(maxvalue < tmp) {
