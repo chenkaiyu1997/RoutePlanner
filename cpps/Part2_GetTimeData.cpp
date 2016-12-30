@@ -13,14 +13,25 @@
 ride r[10005];
 tranode rpa[10005];
 HMM hmm;
-int main() {
-	freopen("../data/averagespeed.txt", "w", stdout);
+int main(int argc, char** argv) {
+	int lbound = 1, rbound = 5883;
+	int zu = 9;
+	if(argc > 1){
+		zu = argv[1][0] - '0';
+		lbound = zu * 1000 + 1;
+		rbound = zu * 1000 + 1000;
+		if(zu == 5) rbound = 5883;
+	}
+
+	string outfile = "../data/roadspeed/averagespeed" + to_string(zu) + ".txt";
+	freopen(outfile.c_str(), "w", stdout);
+
 	initroad();
 	memset(RoadSpeedCount::vcnt, 0, sizeof(RoadSpeedCount::vcnt));
 	memset(RoadSpeedCount::icnt, 0, sizeof(RoadSpeedCount::icnt));
 
 
-	for(int tc = 1; tc <= 5883; tc++) {
+	for(int tc = lbound; tc <= rbound; tc++) {
 		cerr<<tc<<endl;
 		string infile = "../data/Trajectory/" + to_string(tc) + ".txt";
 		freopen(infile.c_str(), "r", stdin);
