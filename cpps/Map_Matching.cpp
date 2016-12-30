@@ -9,8 +9,8 @@
 #include "../headers/Map_Matching.h"
 
 
-int RoadSpeedCount::vcnt[72][300005];
-int RoadSpeedCount::icnt[72][300005];
+int RoadSpeedCount::vcnt[73][400005];
+int RoadSpeedCount::icnt[73][400005];
 
 void HMM::makerectA(tranode * ridea, int n) {
 	//Get zdis
@@ -20,8 +20,8 @@ void HMM::makerectA(tranode * ridea, int n) {
 
 	//Get xdis
 	for(int i = 2; i <= n ; i++) {
-		if(i % 100 == 0)
-			cerr<<i<<endl;
+		//if(i % 100 == 0)
+		//	cerr<<i<<endl;
 		int len1 = z[i-1].size(), len2 = z[i].size();
 		for(int j = 0; j < len1; j++)
 			for(int k = 0; k < len2; k ++) {
@@ -41,15 +41,17 @@ void HMM::makerectA(tranode * ridea, int n) {
 	}
 
 	//Get beta;
-	alldata.clear();
-	for(int i = 2; i <= n ; i++)
-		alldata.push_back(fabs(zdis[i] - xdis[i][0][0]));
-	int len = alldata.size();
-	nth_element(alldata.begin(), alldata.begin() + len/2, alldata.end());
-	beta = alldata[len/2] / log(2);
-	if(beta < 1e-8) beta = 0.1;
-	//beta = 10;
-	//getA
+	// alldata.clear();
+	// for(int i = 2; i <= n ; i++)
+	// 	alldata.push_back(fabs(zdis[i] - xdis[i][0][0]));
+	// int len = alldata.size();
+	// nth_element(alldata.begin(), alldata.begin() + len/2, alldata.end());
+	// beta = alldata[len/2] / log(2);
+	// if(beta < 1e-8) beta = 0.1;
+	// //beta = 10;
+	// //getA
+	// cerr<<"beta = " << beta;
+	beta = 1;
 	for(int i = 2; i <= n ; i++) {
 		int len1 = z[i-1].size(), len2 = z[i].size();
 		for(int j = 0; j < len1; j++)
@@ -68,18 +70,20 @@ double HMM::getprob(double dist) {
 }
 
 void HMM::makerectB(tranode* ridea, int n) {
-	alldata.clear();
-	//get alpha
-	for(int i = 1; i <= n; i++) {
-		int len = z[i].size();
-		if(len == 0)cerr<<"error"<<endl;
-		alldata.push_back(dis(z[i][0].p, ridea[i].p));
-	}
+	// alldata.clear();
+	// //get alpha
+	// for(int i = 1; i <= n; i++) {
+	// 	int len = z[i].size();
+	// 	if(len == 0)cerr<<"error"<<endl;
+	// 	alldata.push_back(dis(z[i][0].p, ridea[i].p));
+	// }
 
-	int len = alldata.size();
-	nth_element(alldata.begin(), alldata.begin() + len/2, alldata.end());
-	alpha = alldata[len/2] * 1.5;
-	//alpha = 100;
+	// int len = alldata.size();
+	// nth_element(alldata.begin(), alldata.begin() + len/2, alldata.end());
+	// alpha = alldata[len/2] * 1.5;
+	// //alpha = 100;	
+	// cerr<<"alpha = " << alpha;
+	alpha = 5;
 	for(int i = 1; i <= n; i++) {
 		int len = z[i].size();
 		for(int j = 0; j < len; j++) 
@@ -130,13 +134,13 @@ vector<Point> HMM::mapmatching(tranode* ridea, int n) {
 			newn--;
 		}
 		z[newn] = getknearest(20, z[newn], ridea[i].p);
-		while(z[newn].size() > 0 && dis(z[newn][(int)z[newn].size() - 1].p, ridea[i].p) > 100)z[newn].pop_back();
+		while(z[newn].size() > 0 && dis(z[newn][(int)z[newn].size() - 1].p, ridea[i].p) > 50)z[newn].pop_back();
 		if(z[newn].size() == 0){
 			shandiao[i] = true;
 			newn--;
 		}
 	}
-	cerr<<newn<<" "<< n <<endl;
+	//cerr<<newn<<" "<< n <<endl;
 	makerectA(ridea, newn);
 	makerectB(ridea, newn);
 	viterbi(newn);
@@ -155,7 +159,7 @@ vector<Point> HMM::mapmatching(tranode* ridea, int n) {
 				dir ^= z[j][vans[j]].p.x < z[j+1][vans[j+1]].p.x;
 			else 
 				dir ^= z[j-1][vans[j-1]].p.x < z[j][vans[j]].p.x;
-			if(dir > 1) cerr<<"error";
+			//if(dir > 1) cerr<<"error";
 			RoadSpeedCount::icnt[ridea[i].ti / 1200][z[j][vans[j]].edgenumber ^ dir] ++;
 			RoadSpeedCount::vcnt[ridea[i].ti / 1200][z[j][vans[j]].edgenumber ^ dir] += ridea[i].v;
 		}

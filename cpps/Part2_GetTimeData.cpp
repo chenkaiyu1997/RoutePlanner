@@ -20,7 +20,8 @@ int main() {
 	memset(RoadSpeedCount::icnt, 0, sizeof(RoadSpeedCount::icnt));
 
 
-	for(int tc = 1; tc <= 3; tc++) {
+	for(int tc = 1; tc <= 5883; tc++) {
+		cerr<<tc<<endl;
 		string infile = "../data/Trajectory/" + to_string(tc) + ".txt";
 		freopen(infile.c_str(), "r", stdin);
 		int m;
@@ -42,7 +43,7 @@ int main() {
 			//printf("%d\n", rpa[i].ti);
 
 			if(zairen == false && rpa[i-1].kong == 1 && rpa[i].kong == 0){
-				r[totrides].linestartnumber = i;
+				r[++totrides].linestartnumber = i;
 				r[totrides].ridedis = 0;
 				zairen = true;
 			}
@@ -54,14 +55,18 @@ int main() {
 			}
 		}
 		if(zairen == true) totrides--;
-		if(tc % 100 == 0)
-			cerr<<tc<<" "<<totrides<<endl;
 	}
+	int goodcnt = 0;
 	for(int i = 0; i < en; i++) {
 		for(int j = 0; j < 72; j++) {
-			printf("%lf %d ", (double)RoadSpeedCount::vcnt[j][i] / (double)RoadSpeedCount::icnt[j][i], RoadSpeedCount::icnt[j][i]);
+			double tmp = (double)RoadSpeedCount::vcnt[j][i] / (double)RoadSpeedCount::icnt[j][i] / 3.6;
+			if(RoadSpeedCount::icnt[j][i] < 2 || tmp <= 0.5 || tmp >= 180)
+				tmp = 10 / 3.6;
+			else goodcnt ++;
+			printf("%.2lf %d ", tmp, RoadSpeedCount::icnt[j][i]);
 		}
 		printf("\n");
 	}
+	cerr<<goodcnt<<endl;
 	return 0;
 }

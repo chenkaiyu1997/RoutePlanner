@@ -12,8 +12,8 @@ public:
 
 class RoadSpeedCount{
 public:
-	static int vcnt[72][300005];
-	static int icnt[72][300005]; 
+	static int vcnt[73][400005];
+	static int icnt[73][400005]; 
 };
 
 class HMM{
