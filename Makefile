@@ -1,6 +1,6 @@
 CC = g++  
 
-CFLAGS += -Wall -g -O2 -fPIC -Iheaders  
+CFLAGS += -std=c++11 -Wunused-result -Wall -g -O2 -fPIC -Iheaders  
 BUILD_DIR = build
 BIN = Road_Get_Main Road_Compression Part1_Task1 Ride_Get_Rides Ride_Get_Proj Ride_DivideByTime Ride_Get_Astardis Position_Get_Driver_Position Part1_Task2_1 Part1_Task2_2
 
