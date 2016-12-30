@@ -35,6 +35,7 @@ vector<roadpoint> getroadpoints(const Point& p) {
 		//cerr<<*it<<" "<<b[*it]<<endl;
 		for(int i = b[*it]; i != -1; i = e[i].nxt) {
 			roadpoint tmp = getprojection(e[i].u, a[e[i].u], e[i].v, a[e[i].v], p);
+			tmp.edgenumber = i;
 			if(tmp.u != -1)
 				ans.push_back(tmp);
 		}

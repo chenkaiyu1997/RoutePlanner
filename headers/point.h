@@ -25,6 +25,7 @@ class roadpoint{
 public:
 	Point p;
 	int u, v;
+	int edgenumber;
 };
 
 

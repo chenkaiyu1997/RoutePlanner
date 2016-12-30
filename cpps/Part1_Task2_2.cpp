@@ -199,13 +199,13 @@ int main() {
 					double mindist;
 					Astar(currentroadpoint, r[tc][nn].pickupposition, mindist);
 					pushtask(tc, it -> driverid, r[tc][nn].pickuptime, mindist, nn);
-					onholdq.erase(it);
+					it = onholdq.erase(it);
 				}
 				else if(dis(r[tc][it -> orderid].pickupposition.p, it -> pos) < 3000) {
 					double mindist;
 					Astar(currentroadpoint, r[tc][it -> orderid].pickupposition, mindist);
 					pushtask(tc, it -> driverid, r[tc][nn].pickuptime, mindist, it -> orderid);
-					onholdq.erase(it);
+					it = onholdq.erase(it);
 				}
 			}
 		}
