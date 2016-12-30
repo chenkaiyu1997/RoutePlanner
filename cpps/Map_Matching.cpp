@@ -124,15 +124,18 @@ void HMM::viterbi(int n) {
 
 
 vector<Point> HMM::mapmatching(tranode* ridea, int n) {
+	//cerr << "in!" << endl;
 	memset(shandiao, 0, sizeof(shandiao));
 	vector<Point> ans;
 	int newn = 0;
 	for(int i = 1; i <= n; i++) {	
+		//cerr << "innner i = " << i << endl;
 		z[++newn] = getroadpoints(ridea[i].p);
 		if(z[newn].size() == 0){
 			shandiao[i] = true;
 			newn--;
-		}
+			continue;
+		}	
 		z[newn] = getknearest(20, z[newn], ridea[i].p);
 		while(z[newn].size() > 0 && dis(z[newn][(int)z[newn].size() - 1].p, ridea[i].p) > 50)z[newn].pop_back();
 		if(z[newn].size() == 0){
@@ -164,5 +167,6 @@ vector<Point> HMM::mapmatching(tranode* ridea, int n) {
 			RoadSpeedCount::vcnt[ridea[i].ti / 1200][z[j][vans[j]].edgenumber ^ dir] += ridea[i].v;
 		}
 	}
+	//cerr<<"mapmatchingdone"<<endl;
 	return ans;
 }

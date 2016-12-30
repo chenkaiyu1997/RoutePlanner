@@ -51,19 +51,24 @@ int main(int argc, char** argv) {
 		int totrides = 0;
 		bool zairen = false;
 		for(int i = 2; i <= m; i++) {
+			//cerr << "i == "<< i << " " << m << endl;
 			//printf("%d\n", rpa[i].ti);
 
 			if(zairen == false && rpa[i-1].kong == 1 && rpa[i].kong == 0){
-				r[++totrides].linestartnumber = i;
+				r[++totrides].pickuptime = rpa[i].ti;
+				r[totrides].linestartnumber = i;
 				r[totrides].ridedis = 0;
 				zairen = true;
 			}
 			if(zairen==true && rpa[i-1].kong == 0 && rpa[i].kong == 1) {
+				r[totrides].endtime = rpa[i].ti;
 				r[totrides].lineendnumber = i - 1;
-				hmm.mapmatching(rpa + r[totrides].linestartnumber, i - r[totrides].linestartnumber);
 				zairen = false;
 				if(r[totrides].endtime - r[totrides].pickuptime < 20) totrides--;
+				else
+					hmm.mapmatching(rpa + r[totrides].linestartnumber, i - r[totrides].linestartnumber);
 			}
+			//cerr << "done" << endl;
 		}
 		if(zairen == true) totrides--;
 	}
