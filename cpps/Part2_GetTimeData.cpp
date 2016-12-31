@@ -32,7 +32,8 @@ int main(int argc, char** argv) {
 
 
 	for(int tc = lbound; tc <= rbound; tc++) {
-		cerr<<tc<<endl;
+		if(tc % 10 == 0)
+			cerr<<tc<<endl;
 		string infile = "../data/Trajectory/" + to_string(tc) + ".txt";
 		freopen(infile.c_str(), "r", stdin);
 		int m;
@@ -75,14 +76,14 @@ int main(int argc, char** argv) {
 	int goodcnt = 0;
 	for(int i = 0; i < en; i++) {
 		for(int j = 0; j < 72; j++) {
-			double tmp = (double)RoadSpeedCount::vcnt[j][i] / (double)RoadSpeedCount::icnt[j][i] / 3.6;
-			if(RoadSpeedCount::icnt[j][i] < 2 || tmp <= 0.5 || tmp >= 180)
-				tmp = 10 / 3.6;
-			else goodcnt ++;
-			printf("%.2lf %d ", tmp, RoadSpeedCount::icnt[j][i]);
+			// double tmp = (double)RoadSpeedCount::vcnt[j][i] / (double)RoadSpeedCount::icnt[j][i] / 3.6;
+			// if(RoadSpeedCount::icnt[j][i] < 2 || tmp <= 0.5 || tmp >= 180)
+			// 	tmp = 10 / 3.6;
+			// else goodcnt ++;
+			printf("%d %d ", RoadSpeedCount::vcnt[j][i], RoadSpeedCount::icnt[j][i]);
 		}
 		printf("\n");
 	}
-	cerr<<goodcnt<<endl;
+	// cerr<<goodcnt<<endl;
 	return 0;
 }

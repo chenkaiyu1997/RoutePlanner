@@ -144,18 +144,20 @@ vector<Point> HMM::mapmatching(tranode* ridea, int n) {
 		}
 	}
 	//cerr<<newn<<" "<< n <<endl;
+	if(newn <= 1)return ans;
 	makerectA(ridea, newn);
 	makerectB(ridea, newn);
 	viterbi(newn);
 
 	ans.clear();
-	ans.push_back(Point(0,0));
+	//ans.push_back(Point(0,0));
 	int j = 0;
 	for(int i = 1; i <= n; i++) {
-		if(shandiao[i])ans.push_back(ridea[i].p);
+		if(shandiao[i]);
+			//ans.push_back(ridea[i].p);
 		else{
 			j++;
-			ans.push_back(z[j][vans[j]].p);
+			//ans.push_back(z[j][vans[j]].p);
 			int edgenumber = z[j][vans[j]].edgenumber;
 			int dir = a[e[edgenumber].u].x < a[e[edgenumber].v].x;
 			if(j == 1) 
