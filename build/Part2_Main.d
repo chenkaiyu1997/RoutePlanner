@@ -1,4 +1,4 @@
-build/TimeAtar_Test.o: cpps/TimeAtar_Test.cpp cpps/../headers/basic.h \
+build/Part2_Main.o: cpps/Part2_Main.cpp cpps/../headers/basic.h \
  cpps/../headers/point.h cpps/../headers/../headers/basic.h \
  cpps/../headers/edge.h cpps/../headers/kdtree.h cpps/../headers/ride.h \
  cpps/../headers/../headers/point.h cpps/../headers/analyse.h \

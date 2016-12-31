@@ -14,7 +14,7 @@ ride r[200005];
 
 int main() {
 	initroad();
-	readroadtime();
+	readroadtime2();
 	freopen("../data/rides.txt", "r", stdin);
 	int totrides = 0;
 	cin >> totrides;
@@ -28,7 +28,7 @@ int main() {
 		double timedis = 0;
 		double time = 0;
 		TimeAstar(r[i].pickuptime, r[i].pickupposition, r[i].endposition, timedis, time);
-		cerr << 1 - fabs(r[i].ridedis - r[i].astardis) / r[i].ridedis << "\t" << 1 - fabs(r[i].ridedis - timedis ) / r[i].ridedis;
+		cerr << 1.0 - fabs(r[i].ridedis - r[i].astardis) / r[i].ridedis << "\t" << 1 - fabs(r[i].ridedis - timedis ) / r[i].ridedis;
 		cerr << "\t"<<fabs(time - r[i].endtime + r[i].pickuptime) / (double)(r[i].endtime - r[i].pickuptime) << endl;
 	}
 	return 0;
