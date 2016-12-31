@@ -2,9 +2,9 @@ CC = g++
 
 CFLAGS += -std=c++11 -Wunused-result -Wall -g -O2 -fPIC -Iheaders  
 BUILD_DIR = build
-# BIN = Road_Get_Main Road_Compression Part1_Task1 Ride_Get_Rides Ride_Get_Proj Ride_DivideByTime Ride_Get_Astardis Position_Get_Driver_Position Part1_Task2_1 Part1_Task2_2
+# BIN = Road_Get_Main Road_Compression Part1_Task1 Ride_Get_Rides Ride_Get_Proj Ride_DivideByTime Ride_Get_Astardis Position_Get_Driver_Position Part1_Task2_1 Part1_Task2_2 Part2_GetTimeData TimeAtar_Test
 
-BIN = Part2_GetTimeData
+BIN = TimeAtar_Test
 # BIN1 = Road_Get_Main
 # BIN2 = Road_Compression
 # BIN3 = Part1_Task1
@@ -15,10 +15,12 @@ BIN = Part2_GetTimeData
 # BIN8 = Position_Get_Driver_Position
 # BIN9 = Part1_Task2_1
 # BIN10 = Part1_Task2_2
-BIN11 = Part2_GetTimeData
+# BIN11 = Part2_GetTimeData
+BIN12 = TimeAtar_Test
 
-MYDEPS = $(BUILD_DIR)/point.o $(BUILD_DIR)/edge.o $(BUILD_DIR)/kdtree.o $(BUILD_DIR)/astar.o $(BUILD_DIR)/analyse.o $(BUILD_DIR)/initroad.o $(BUILD_DIR)/ride.o  $(BUILD_DIR)/getprojection.o 
+MYDEPS = $(BUILD_DIR)/point.o $(BUILD_DIR)/edge.o $(BUILD_DIR)/kdtree.o $(BUILD_DIR)/astar.o $(BUILD_DIR)/analyse.o $(BUILD_DIR)/initroad.o $(BUILD_DIR)/ride.o  $(BUILD_DIR)/getprojection.o $(BUILD_DIR)/roadtime.o 
 #MYDEPS = $(BUILD_DIR)/point.o $(BUILD_DIR)/analyse.o
+BIN12MYDEPS = $(BUILD_DIR)/point.o $(BUILD_DIR)/edge.o $(BUILD_DIR)/kdtree.o $(BUILD_DIR)/analyse.o $(BUILD_DIR)/initroad.o $(BUILD_DIR)/ride.o  $(BUILD_DIR)/getprojection.o $(BUILD_DIR)/roadtime.o 
 
 
 SRCS = $(wildcard cpps/*.cpp)  
@@ -66,8 +68,14 @@ $(BUILD_DIR)/%.o: %.cpp
 # $(BIN10): $(BUILD_DIR)/$(BIN10).o $(MYDEPS)
 # 	$(CC) $(CFLAGS) -o $(BIN10) $(BUILD_DIR)/$(BIN10).o $(MYDEPS)
 
-$(BIN11): $(BUILD_DIR)/$(BIN11).o $(MYDEPS) $(BUILD_DIR)/Map_Matching.o
-	$(CC) $(CFLAGS) -o $(BIN11) $(BUILD_DIR)/$(BIN11).o $(MYDEPS) $(BUILD_DIR)/Map_Matching.o
+#$(BIN11): $(BUILD_DIR)/$(BIN11).o $(MYDEPS) $(BUILD_DIR)/Map_Matching.o
+#	$(CC) $(CFLAGS) -o $(BIN11) $(BUILD_DIR)/$(BIN11).o $(MYDEPS) $(BUILD_DIR)/Map_Matching.o
+
+$(BIN12): $(BUILD_DIR)/$(BIN12).o $(BIN12MYDEPS) $(BUILD_DIR)/timeastar.o
+	$(CC) $(CFLAGS) -o $(BIN12) $(BUILD_DIR)/$(BIN12).o $(BIN12MYDEPS) $(BUILD_DIR)/timeastar.o
+
+
+
 #$(BIN): $(OBJS)
 # 	echo "skiped"
 

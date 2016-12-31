@@ -1,6 +1,8 @@
 #ifndef _EDGE_H
 #define _EDGE_H
 
+#include "../headers/basic.h"
+
 struct edge{
 	int u, v, nxt;
 	double w;
