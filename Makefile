@@ -4,13 +4,13 @@ CFLAGS += -std=c++11 -Wunused-result -Wall -g -O2 -fPIC -Iheaders
 BUILD_DIR = build
 # BIN = Road_Get_Main Road_Compression Part1_Task1 Ride_Get_Rides Ride_Get_Proj Ride_DivideByTime Ride_Get_Astardis Position_Get_Driver_Position Part1_Task2_1 Part1_Task2_2 Part2_GetTimeData TimeAtar_Test
 
-BIN = TimeAtar_Test
+BIN = TimeAtar_Test Ride_Get_Rides Ride_Get_Proj Ride_Get_Astardis
 # BIN1 = Road_Get_Main
 # BIN2 = Road_Compression
 # BIN3 = Part1_Task1
-# BIN4 = Ride_Get_Rides
-# BIN5 = Ride_Get_Proj
-# BIN6 = Ride_Get_Astardis
+ BIN4 = Ride_Get_Rides
+ BIN5 = Ride_Get_Proj
+ BIN6 = Ride_Get_Astardis
 # BIN7 = Ride_DivideByTime
 # BIN8 = Position_Get_Driver_Position
 # BIN9 = Part1_Task2_1
@@ -47,14 +47,14 @@ $(BUILD_DIR)/%.o: %.cpp
 # $(BIN3): $(BUILD_DIR)/$(BIN3).o $(MYDEPS)
 # 	$(CC) $(CFLAGS) -o $(BIN3) $(BUILD_DIR)/$(BIN3).o $(MYDEPS)
 
-# $(BIN4): $(BUILD_DIR)/$(BIN4).o $(MYDEPS)
-# 	$(CC) $(CFLAGS) -o $(BIN4) $(BUILD_DIR)/$(BIN4).o $(MYDEPS)
+$(BIN4): $(BUILD_DIR)/$(BIN4).o $(MYDEPS)
+	$(CC) $(CFLAGS) -o $(BIN4) $(BUILD_DIR)/$(BIN4).o $(MYDEPS)
 
-# $(BIN5): $(BUILD_DIR)/$(BIN5).o $(MYDEPS)
-# 	$(CC) $(CFLAGS) -o $(BIN5) $(BUILD_DIR)/$(BIN5).o $(MYDEPS)
+$(BIN5): $(BUILD_DIR)/$(BIN5).o $(MYDEPS)
+	$(CC) $(CFLAGS) -o $(BIN5) $(BUILD_DIR)/$(BIN5).o $(MYDEPS)
 
-# $(BIN6): $(BUILD_DIR)/$(BIN6).o $(MYDEPS)
-# 	$(CC) $(CFLAGS) -o $(BIN6) $(BUILD_DIR)/$(BIN6).o $(MYDEPS)
+$(BIN6): $(BUILD_DIR)/$(BIN6).o $(MYDEPS)
+	$(CC) $(CFLAGS) -o $(BIN6) $(BUILD_DIR)/$(BIN6).o $(MYDEPS)
 
 # $(BIN7): $(BUILD_DIR)/$(BIN7).o $(MYDEPS)
 # 	$(CC) $(CFLAGS) -o $(BIN7) $(BUILD_DIR)/$(BIN7).o $(MYDEPS)

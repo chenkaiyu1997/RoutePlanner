@@ -23,6 +23,7 @@ map<int, int> pre;
 
 
 vector<int> TimeAstar(int ti, roadpoint& A, roadpoint& B, double& totdis, double& tottime) {
+	ti /= 1200;
 	while(!q.empty()) q.pop();
 	pre.clear();
 	double tmpu = dis(A.p, a[A.u]);
