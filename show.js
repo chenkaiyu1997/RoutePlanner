@@ -3,7 +3,7 @@ var Papa = require("babyparse");
 var fs = require("fs");
 var coordtransform = require('coordtransform');
 // 异步读取
-fs.readFile('mapmachingout.txt', function (err, data) {
+fs.readFile('../data/toshow.txt', function (err, data) {
    if (err) {
        return console.error(err);
    }
