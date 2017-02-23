@@ -22,18 +22,18 @@ int main() {
 	}
 	ti *= 3600;
 	printf("Input the start Point: input example:\n");
-	printf("121.463 31.23\n");
+	printf("121.509 31.305 and 121.6 31.19\n");
 	double tmpx, tmpy;
 	roadpoint startPoint, endPoint;
 	printf("Startpoint: ");
-	//cin >>  tmpx >> tmpy;
-	tmpx = 121.509;tmpy = 31.305;
+	cin >>  tmpx >> tmpy;
+	//tmpx = 121.509;tmpy = 31.305;
 	startPoint.p.x = (int)(tmpx * 100000);
 	startPoint.p.y = (int)(tmpy * 100000);
 	printf("Destination: ");
 
-	//cin >>  tmpx >> tmpy;
-	tmpx = 121.6;tmpy = 31.19;
+	cin >> tmpx >> tmpy;
+	//tmpx = 121.6;tmpy = 31.19;
 	endPoint.p.x = (int)(tmpx * 100000);
 	endPoint.p.y = (int)(tmpy * 100000);
 

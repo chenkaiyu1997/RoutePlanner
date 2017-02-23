@@ -14,7 +14,7 @@ ride r[200005];
 
 int main() {
 	initroad();
-	readroadtime2();
+	readroadtime();
 	freopen("../data/rides.txt", "r", stdin);
 	int totrides = 0;
 	cin >> totrides;
